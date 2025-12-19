@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Dashboard Integrado — Sistema de Gestão</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</head>
+<body>
+
+<header>
+    <div class="header-inner">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJYAAAAmCAYAAAD9P9EAAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAJTSURBVHgB7VvRbdswDHWf9O0G6AbpBu0GzQbtBu0G7QbtBskG6QbpBs0G8QYdBun+X8vRjyRREidSpGR9AByCIvH4SByfSInhX8YkYAL/NoF/m96jL369Xm9G/Y3K6U8R6I7BfX69Xn8of7vdfiwWi8/D4fA5Fh7L5fJlPp8/96vV6r67/6f/Xh8Oh98An/Z7P/8e0uL5vY8f7m42m8disZgsFovpZDL5mE6nH9PptFvL5fInQL8A+N36B0D3eO4D6v3B0XmO9/N63f3N6n0fN/V+4UjBf7Dsc0f8m8vlcrtcLv8E0A9A87p+vV7vAfgXfD+V9O99+C9E6E9H/F+8z9D/C/hveW8v7A/9+K/Yn77vGfX7D+7vC/T13r7X3f0Y9fcA9H7xH8G7667f3B96p2P9/Yd+f79eR/87BvX7E/oNfUf/H9vP7e8B6N0O9fv9vN69X1v9u6v+f6v6/vV/rL8X/P6+1898x+f8pX3sO/f566/vUf++96f3+v0O9X4N7K+v/6v37+6Ofv97n03A7pP7A7jX87jX70/fF8D7Dfr6Y7t68B291+v7Y679fsc/An/pX/37Dfx9/Yd7GfX+v76XUe/XwP76+r96/+7u6Pe/99kE7D65P4B7PY97/f70fQG836CvP7arB9/Re72+P+ba73f8I/CX/tW/38Df13+4l1Hv/+/Y+A8C/wEAt/sO/BIAAA==" alt="Logo">
+        <div class="header-actions">
+            <button class="btn btn-secondary" onclick="window.location.href='https://github.com/'">Editar</button>
+            <button class="btn btn-primary" onclick="downloadDashboard()">Download</button>
+            <button class="btn btn-secondary" onclick="location.reload()">Recarregar</button>
+        </div>
+    </div>
+</header>
+
+<div class="tabs-container">
+    <div class="tabs" id="tabs-menu">
+        <button class="tab-btn active" data-tab="resumo">Visão Geral</button>
+        <button class="tab-btn" data-tab="colaboradores">Colaboradores</button>
+        <button class="tab-btn" data-tab="vendas">Vendas & Metas</button>
+        <button class="tab-btn" data-tab="cashback">Cashback</button>
+    </div>
+</div>
+
+<div class="wrap" id="dashboard-content">
+    <p id="update-info" style="font-size: 11px; color: #6b7280; text-align: right; margin-bottom: 10px;">
+        Última atualização de dados: <span id="last-update-time">--:--</span>
+    </p>
+
+    <div id="tab-content">
+        </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
