@@ -1,43 +1,82 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Dashboard Integrado — Sistema de Gestão</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dashboard Integrado - Sistema de Gestão</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <header>
+        <div class="header-logo">
+            <!-- SUBSTITUA pela sua logo externa -->
+            <img src="logo.png" alt="Dashboard Líderes" class="header-logo">
+        </div>
+        <div class="actions">
+            <button class="edit" id="edit">Editar</button>
+            <button class="download" id="downloadBtn">Baixar Imagem</button>
+            <button class="copy" id="copy">Copiar</button>
+            <button class="reload" id="reload">Recarregar</button>
+            <button class="debug" id="debugBtn">Debug</button>
+        </div>
+    </header>
 
-<header>
-    <div class="header-inner">
-        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJYAAAAmCAYAAAD9P9EAAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAJTSURBVHgB7VvRbdswDHWf9O0G6AbpBu0GzQbtBu0G7QbtBskG6QbpBs0G8QYdBun+X8vRjyRREidSpGR9AByCIvH4SByfSInhX8YkYAL/NoF/m96jL369Xm9G/Y3K6U8R6I7BfX69Xn8of7vdfiwWi8/D4fA5Fh7L5fJlPp8/96vV6r67/6f/Xh8Oh98An/Z7P/8e0uL5vY8f7m42m8disZgsFovpZDL5mE6nH9PptFvL5fInQL8A+N36B0D3eO4D6v3B0XmO9/N63f3N6n0fN/V+4UjBf7Dsc0f8m8vlcrtcLv8E0A9A87p+vV7vAfgXfD+V9O99+C9E6E9H/F+8z9D/C/hveW8v7A/9+K/Yn77vGfX7D+7vC/T13r7X3f0Y9fcA9H7xH8G7667f3B96p2P9/Yd+f79eR/87BvX7E/oNfUf/H9vP7e8B6N0O9fv9vN69X1v9u6v+f6v6/vV/rL8X/P6+1898x+f8pX3sO/f566/vUf++96f3+v0O9X4N7K+v/6v37+6Ofv97n03A7pP7A7jX87jX70/fF8D7Dfr6Y7t68B291+v7Y679fsc/An/pX/37Dfx9/Yd7GfX+v76XUe/XwP76+r96/+7u6Pe/99kE7D65P4B7PY97/f70fQG836CvP7arB9/Re72+P+ba73f8I/CX/tW/38Df13+4l1Hv/+/Y+A8C/wEAt/sO/BIAAA==" alt="Logo">
-        <div class="header-actions">
-            <button class="btn btn-secondary" onclick="window.location.href='https://github.com/'">Editar</button>
-            <button class="btn btn-primary" onclick="downloadDashboard()">Download</button>
-            <button class="btn btn-secondary" onclick="location.reload()">Recarregar</button>
+    <div class="tabs-container">
+        <div class="tabs-header">
+            <!-- MELHORADO: Acessibilidade A11y -->
+            <button class="tab-button active" data-tab="dashboard" role="tab" aria-selected="true" aria-controls="dashboard" id="tab-dashboard-btn">Dashboard</button>
+            <button class="tab-button" data-tab="contagemapp" role="tab" aria-selected="false" aria-controls="contagemapp" id="tab-contagemapp-btn">Contagem APP</button>
+            <button class="tab-button" data-tab="vendas" role="tab" aria-selected="false" aria-controls="vendas" id="tab-vendas-btn">Vendas</button>
+            <button class="tab-button" data-tab="retencao" role="tab" aria-selected="false" aria-controls="retencao" id="tab-retencao-btn">Retenção</button>
+            <button class="tab-button" data-tab="adimplencia" role="tab" aria-selected="false" aria-controls="adimplencia" id="tab-adimplencia-btn">Adimplência</button>
+            <button class="tab-button" data-tab="cashback" role="tab" aria-selected="false" aria-controls="cashback" id="tab-cashback-btn">Cashback</button>
+            <button class="tab-button" data-tab="refuturiza" role="tab" aria-selected="false" aria-controls="refuturiza" id="tab-refuturiza-btn">Refuturiza</button>
         </div>
     </div>
-</header>
 
-<div class="tabs-container">
-    <div class="tabs" id="tabs-menu">
-        <button class="tab-btn active" data-tab="resumo">Visão Geral</button>
-        <button class="tab-btn" data-tab="colaboradores">Colaboradores</button>
-        <button class="tab-btn" data-tab="vendas">Vendas & Metas</button>
-        <button class="tab-btn" data-tab="cashback">Cashback</button>
-    </div>
-</div>
-
-<div class="wrap" id="dashboard-content">
-    <p id="update-info" style="font-size: 11px; color: #6b7280; text-align: right; margin-bottom: 10px;">
-        Última atualização de dados: <span id="last-update-time">--:--</span>
-    </p>
-
-    <div id="tab-content">
+    <div id="tab-content-area">
+        <div id="dashboard" class="tab-pane active" role="tabpanel" aria-labelledby="tab-dashboard-btn">
+            <div style="margin-bottom:20px">
+                <h2 style="color:var(--accent);margin:0 0 20px 0">Visão Geral dos Indicadores</h2>
+                <div id="dashboardContent"></div>
+            </div>
         </div>
-</div>
 
-<script src="script.js"></script>
+        <div id="contagemapp" class="tab-pane" role="tabpanel" aria-labelledby="tab-contagemapp-btn">
+            <div id="topCardsContagemApp" class="top-cards"></div>
+            <div id="sectionsContagemApp"></div>
+        </div>
+
+        <div id="vendas" class="tab-pane" role="tabpanel" aria-labelledby="tab-vendas-btn">
+            <div id="topCardsVendas" class="top-cards"></div>
+            <div id="sectionsVendas"></div>
+        </div>
+
+        <div id="retencao" class="tab-pane" role="tabpanel" aria-labelledby="tab-retencao-btn">
+            <div id="topCardsRetencao" class="top-cards"></div>
+            <div id="sectionsRetencao"></div>
+        </div>
+
+        <div id="adimplencia" class="tab-pane" role="tabpanel" aria-labelledby="tab-adimplencia-btn">
+            <div id="topCardsAdimplencia" class="top-cards"></div>
+            <div id="sectionsAdimplencia"></div>
+        </div>
+
+        <div id="cashback" class="tab-pane" role="tabpanel" aria-labelledby="tab-cashback-btn">
+            <div id="topCardsCashback" class="top-cards"></div>
+            <div id="sectionsCashback"></div>
+        </div>
+
+        <div id="refuturiza" class="tab-pane" role="tabpanel" aria-labelledby="tab-refuturiza-btn">
+            <div id="topCardsRefuturiza" class="top-cards"></div>
+            <div id="sectionsRefuturiza"></div>
+        </div>
+    </div>
+
+    <div id="debugPanel" class="debug-panel"></div>
+    <div class="footer">Atualização automática a cada 3 minutos</div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
