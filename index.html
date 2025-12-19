@@ -1,82 +1,194 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Dashboard Integrado - Sistema de Gestão</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dashboard Integrado - Sistema de Gestão</title>
+
+  <!-- CSS EXTERNO -->
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-    <header>
-        <div class="header-logo">
-            <!-- SUBSTITUA pela sua logo externa -->
-            <img src="logo.png" alt="Dashboard Líderes" class="header-logo">
-        </div>
-        <div class="actions">
-            <button class="edit" id="edit">Editar</button>
-            <button class="download" id="downloadBtn">Baixar Imagem</button>
-            <button class="copy" id="copy">Copiar</button>
-            <button class="reload" id="reload">Recarregar</button>
-            <button class="debug" id="debugBtn">Debug</button>
-        </div>
-    </header>
+  <header>
+    <div class="header-logo">
+      <img
+        src="logo.png"
+        alt="Dashboard Líderes"
+        class="header-logo"
+      />
+    </div>
+    <div class="actions">
+      <button class="edit" id="edit">Editar</button>
+      <button class="download" id="downloadBtn">Baixar Imagem</button>
+      <button class="copy" id="copy">Copiar</button>
+      <button class="reload" id="reload">Recarregar</button>
+      <button class="debug" id="debugBtn">Debug</button>
+    </div>
+  </header>
 
-    <div class="tabs-container">
-        <div class="tabs-header">
-            <!-- MELHORADO: Acessibilidade A11y -->
-            <button class="tab-button active" data-tab="dashboard" role="tab" aria-selected="true" aria-controls="dashboard" id="tab-dashboard-btn">Dashboard</button>
-            <button class="tab-button" data-tab="contagemapp" role="tab" aria-selected="false" aria-controls="contagemapp" id="tab-contagemapp-btn">Contagem APP</button>
-            <button class="tab-button" data-tab="vendas" role="tab" aria-selected="false" aria-controls="vendas" id="tab-vendas-btn">Vendas</button>
-            <button class="tab-button" data-tab="retencao" role="tab" aria-selected="false" aria-controls="retencao" id="tab-retencao-btn">Retenção</button>
-            <button class="tab-button" data-tab="adimplencia" role="tab" aria-selected="false" aria-controls="adimplencia" id="tab-adimplencia-btn">Adimplência</button>
-            <button class="tab-button" data-tab="cashback" role="tab" aria-selected="false" aria-controls="cashback" id="tab-cashback-btn">Cashback</button>
-            <button class="tab-button" data-tab="refuturiza" role="tab" aria-selected="false" aria-controls="refuturiza" id="tab-refuturiza-btn">Refuturiza</button>
-        </div>
+  <!-- CONTAINER FIXO DAS ABAS -->
+  <div class="tabs-container">
+    <div class="tabs-header">
+      <button
+        class="tab-button active"
+        data-tab="dashboard"
+        role="tab"
+        aria-selected="true"
+        aria-controls="dashboard"
+        id="tab-dashboard-btn"
+      >
+        Dashboard
+      </button>
+      <button
+        class="tab-button"
+        data-tab="contagemapp"
+        role="tab"
+        aria-selected="false"
+        aria-controls="contagemapp"
+        id="tab-contagemapp-btn"
+      >
+        Contagem APP
+      </button>
+      <button
+        class="tab-button"
+        data-tab="vendas"
+        role="tab"
+        aria-selected="false"
+        aria-controls="vendas"
+        id="tab-vendas-btn"
+      >
+        Vendas
+      </button>
+      <button
+        class="tab-button"
+        data-tab="retencao"
+        role="tab"
+        aria-selected="false"
+        aria-controls="retencao"
+        id="tab-retencao-btn"
+      >
+        Retenção
+      </button>
+      <button
+        class="tab-button"
+        data-tab="adimplencia"
+        role="tab"
+        aria-selected="false"
+        aria-controls="adimplencia"
+        id="tab-adimplencia-btn"
+      >
+        Adimplência
+      </button>
+      <button
+        class="tab-button"
+        data-tab="cashback"
+        role="tab"
+        aria-selected="false"
+        aria-controls="cashback"
+        id="tab-cashback-btn"
+      >
+        Cashback
+      </button>
+      <button
+        class="tab-button"
+        data-tab="refuturiza"
+        role="tab"
+        aria-selected="false"
+        aria-controls="refuturiza"
+        id="tab-refuturiza-btn"
+      >
+        Refuturiza
+      </button>
+    </div>
+  </div>
+
+  <!-- ÁREA DE CONTEÚDO DAS ABAS -->
+  <div id="tab-content-area">
+    <div
+      id="dashboard"
+      class="tab-pane active"
+      role="tabpanel"
+      aria-labelledby="tab-dashboard-btn"
+    >
+      <div style="margin-bottom: 20px">
+        <h2
+          style="
+            color: var(--accent);
+            margin: 0 0 20px 0;
+          "
+        >
+          Visão Geral dos Indicadores
+        </h2>
+        <div id="dashboardContent"></div>
+      </div>
     </div>
 
-    <div id="tab-content-area">
-        <div id="dashboard" class="tab-pane active" role="tabpanel" aria-labelledby="tab-dashboard-btn">
-            <div style="margin-bottom:20px">
-                <h2 style="color:var(--accent);margin:0 0 20px 0">Visão Geral dos Indicadores</h2>
-                <div id="dashboardContent"></div>
-            </div>
-        </div>
-
-        <div id="contagemapp" class="tab-pane" role="tabpanel" aria-labelledby="tab-contagemapp-btn">
-            <div id="topCardsContagemApp" class="top-cards"></div>
-            <div id="sectionsContagemApp"></div>
-        </div>
-
-        <div id="vendas" class="tab-pane" role="tabpanel" aria-labelledby="tab-vendas-btn">
-            <div id="topCardsVendas" class="top-cards"></div>
-            <div id="sectionsVendas"></div>
-        </div>
-
-        <div id="retencao" class="tab-pane" role="tabpanel" aria-labelledby="tab-retencao-btn">
-            <div id="topCardsRetencao" class="top-cards"></div>
-            <div id="sectionsRetencao"></div>
-        </div>
-
-        <div id="adimplencia" class="tab-pane" role="tabpanel" aria-labelledby="tab-adimplencia-btn">
-            <div id="topCardsAdimplencia" class="top-cards"></div>
-            <div id="sectionsAdimplencia"></div>
-        </div>
-
-        <div id="cashback" class="tab-pane" role="tabpanel" aria-labelledby="tab-cashback-btn">
-            <div id="topCardsCashback" class="top-cards"></div>
-            <div id="sectionsCashback"></div>
-        </div>
-
-        <div id="refuturiza" class="tab-pane" role="tabpanel" aria-labelledby="tab-refuturiza-btn">
-            <div id="topCardsRefuturiza" class="top-cards"></div>
-            <div id="sectionsRefuturiza"></div>
-        </div>
+    <div
+      id="contagemapp"
+      class="tab-pane"
+      role="tabpanel"
+      aria-labelledby="tab-contagemapp-btn"
+    >
+      <div id="topCardsContagemApp" class="top-cards"></div>
+      <div id="sectionsContagemApp"></div>
     </div>
 
-    <div id="debugPanel" class="debug-panel"></div>
-    <div class="footer">Atualização automática a cada 3 minutos</div>
+    <div
+      id="vendas"
+      class="tab-pane"
+      role="tabpanel"
+      aria-labelledby="tab-vendas-btn"
+    >
+      <div id="topCardsVendas" class="top-cards"></div>
+      <div id="sectionsVendas"></div>
+    </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-    <script src="script.js"></script>
+    <div
+      id="retencao"
+      class="tab-pane"
+      role="tabpanel"
+      aria-labelledby="tab-retencao-btn"
+    >
+      <div id="topCardsRetencao" class="top-cards"></div>
+      <div id="sectionsRetencao"></div>
+    </div>
+
+    <div
+      id="adimplencia"
+      class="tab-pane"
+      role="tabpanel"
+      aria-labelledby="tab-adimplencia-btn"
+    >
+      <div id="topCardsAdimplencia" class="top-cards"></div>
+      <div id="sectionsAdimplencia"></div>
+    </div>
+
+    <div
+      id="cashback"
+      class="tab-pane"
+      role="tabpanel"
+      aria-labelledby="tab-cashback-btn"
+    >
+      <div id="topCardsCashback" class="top-cards"></div>
+      <div id="sectionsCashback"></div>
+    </div>
+
+    <div
+      id="refuturiza"
+      class="tab-pane"
+      role="tabpanel"
+      aria-labelledby="tab-refuturiza-btn"
+    >
+      <div id="topCardsRefuturiza" class="top-cards"></div>
+      <div id="sectionsRefuturiza"></div>
+    </div>
+  </div>
+
+  <div id="debugPanel" class="debug-panel"></div>
+  <div class="footer">Atualização automática a cada 3 minutos</div>
+
+  <!-- SCRIPTS EXTERNOS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
